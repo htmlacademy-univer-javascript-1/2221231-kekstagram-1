@@ -1,4 +1,5 @@
-const isEscapeKey = (evt) => evt.key === 'Escape';
+import {isEscapeKey} from './util.js';
+
 const body = document.body;
 const fullScreen = document.querySelector('.big-picture');
 const closeButton = fullScreen.querySelector('#picture-cancel');
@@ -7,7 +8,7 @@ const currentCommentsCount = fullScreen.querySelector('.social__comment-count');
 const loadCommentsButton = fullScreen.querySelector('.social__comments-loader');
 const commentsList = fullScreen.querySelector('.social__comments');
 
-var commentsAmount = 0;
+let commentsAmount = 0;
 const fillComments = (comments) => {
   comments.slice(commentsAmount, commentsAmount + 5).forEach((comment) => {
     const thisComment = commentTemplate.cloneNode(true);
@@ -18,7 +19,7 @@ const fillComments = (comments) => {
     commentsList.append(thisComment);
     commentsAmount++;
   });
-  currentCommentsCount.innerHTML = `${commentsAmount} из <span class="comments-count">${comments.length}</span> комментариев`;
+  currentCommentsCount.innerHTML = `${commentsAmount} из <span class='comments-count'>${comments.length}</span> комментариев`;
   if (commentsAmount === comments.length) {
     loadCommentsButton.classList.add('hidden');
   }
